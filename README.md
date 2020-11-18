@@ -5,17 +5,18 @@ Playlist generation model created by looking at frequent itemsets from other pla
 Need to put a `config.ini` in the root folder. Example config:
 
     [DEFAULT]
+    Verbose = False
 
-    [MODEL]
-    playlists_dir = None
-    frequent_itemsets_model = ../fi_model.pbjson
-    min_sup = 0.5
-    min_conf = 0.5
-    itemset_size = 5
+    [model]
+    PlaylistsDir = **NONE** (need to put your directory here)
+    FrequentItemsetsModel = ./fi_model.pbjson
+    MinSup = 0.5
+    ItemsetSize = 5
 
-    [GENERATION]
-    gen_playlist = ../gen.INDEX
-    in_playlist = ../playlist.INDEX
+    [generation]
+    GenPlaylist = ../gen.INDEX
+    InPlaylist = ../playlist.INDEX
+    FrequentItemsetsModel = ./fi_model.pbjson
 
 *MODEL* section contains info needed for generating the frequent itemset model.
 
@@ -23,7 +24,7 @@ Need to put a `config.ini` in the root folder. Example config:
 
 `frequent_itemsets_model` is where the frequent itemsets will be written. It will be stored in .pbjson format, where each key is an item and the value is the frequent itemset containing the item. Stored with way to optimize lookup times when generating a playlist.
 
-`min_sup` and `min_conf` are self explanatory for the frequent itsemsets. `itemset_size` is the maximum size of the itemsets that will be found and the only itemsets that will be recorded in the model.
+`min_sup` is self explanatory for the frequent itsemsets. `itemset_size` is the maximum size of the itemsets that will be found and the only itemsets that will be recorded in the model.
 
 
 *GENERATION* section contains info needed for generating a new playlist from a given playlist and a given itemset model.
