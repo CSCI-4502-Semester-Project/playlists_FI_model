@@ -53,12 +53,16 @@ if __name__ == '__main__':
     if verbose:
         print('Aggregating playlist.')
     gen_playlist_set = set({})
+    coverage = 0
     for track in seed:
         try:
             gen_playlist_set = gen_playlist_set.union(set(model[track]))
+            coverage += 1
         except:
             if verbose:
                 print('%s not in model.' % track)
+    
+    print('Coverage: {:.2f}%'.format(coverage/len(seed) * 100.0))
     
     # remove duplicates between generated playlist and seed playlist
     if verbose:
